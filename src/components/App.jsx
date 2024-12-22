@@ -11,6 +11,7 @@ function App() {
 
   // When the User Adds a Todo
   const onAdd = (todo) => {
+    if (todo.title === "") return;
     setTodoState((prevTodoState) => [...prevTodoState, todo]);
   };
 
