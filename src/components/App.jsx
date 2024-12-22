@@ -1,5 +1,13 @@
+import HeaderComponent from "./Header";
+import FooterComponent from "./Footer";
+
 function App() {
-  return <h1>Hello From Anirban And this Site is Working Fine for Now.</h1>;
+  return (
+    <>
+      <HeaderComponent headerTitle="React Todo Website" />
+      <FooterComponent />
+    </>
+  );
 }
 
 export default App;
