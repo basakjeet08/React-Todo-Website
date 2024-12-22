@@ -24,8 +24,10 @@ function App() {
   return (
     <>
       <HeaderComponent headerTitle="Reactive Todos" />
-      <InputTodoComponent onAddClick={onAdd} />
-      <TodoUIComponent todoList={todoState} onDelete={onDelete} />
+      <div style={{ flex: 1 }}>
+        <InputTodoComponent onAddClick={onAdd} />
+        <TodoUIComponent todoList={todoState} onDelete={onDelete} />
+      </div>
       <FooterComponent />
     </>
   );
