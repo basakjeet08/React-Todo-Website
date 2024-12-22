@@ -11,13 +11,13 @@ function App() {
 
   // When the User Adds a Todo
   const onAdd = (todo) => {
-    setTodoState((prevTodoList) => [...prevTodoList, todo]);
+    setTodoState((prevTodoState) => [...prevTodoState, todo]);
   };
 
   // When we delete an todo List
   const onDelete = (indexToDelete) => {
-    setTodoState((prevTodoList) => {
-      return prevTodoList.filter((_todo, index) => index != indexToDelete);
+    setTodoState((prevTodoState) => {
+      return prevTodoState.filter((_todo, index) => index != indexToDelete);
     });
   };
 
