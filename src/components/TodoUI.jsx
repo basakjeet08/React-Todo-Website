@@ -1,4 +1,3 @@
-import todoList from "../utilities/Constants";
 import TodoItemComponent from "./TodoItem";
 
 const defaultStyle = {
@@ -9,16 +8,14 @@ const defaultStyle = {
   padding: 16,
 };
 
-function TodoUIComponent() {
+function TodoUIComponent({ todoList, onDelete }) {
   return (
     <div style={defaultStyle}>
       {todoList.map((todo, index) => (
         <TodoItemComponent
           key={index}
           todo={todo}
-          onDeleteClick={() => {
-            console.log("Todo Object Delete Clicked : " + todo);
-          }}
+          onDeleteClick={() => onDelete(index)}
         />
       ))}
     </div>
