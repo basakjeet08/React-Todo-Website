@@ -21,7 +21,7 @@ function InputComponent({
   return (
     <input
       value={value}
-      onChange={(event) => onChange(event.target.value)}
+      onChange={(event) => onChange(event)}
       className={className}
       name={name}
       style={{ ...defaultStyle, ...style }}

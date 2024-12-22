@@ -8,10 +8,11 @@ const defaultStyle = {
   backgroundColor: " #f5ba13",
   fontFamily: "McLaren, cursive",
   color: "white",
+  cursor: "pointer",
   transition: "all 0.25s",
 };
 
-function ButtonComponent({ buttonText, onClick, className, style }) {
+function ButtonComponent({ onClick, className, style, children }) {
   const [isHovering, setIsHovering] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
@@ -28,7 +29,7 @@ function ButtonComponent({ buttonText, onClick, className, style }) {
       onMouseDown={() => setIsActive(true)}
       onMouseUp={() => setIsActive(false)}
     >
-      {buttonText}
+      {children}
     </button>
   );
 }
