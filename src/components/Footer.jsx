@@ -1,21 +1,17 @@
 // Footer Style Object in Javascript
-const footerStyle = {
-  position: "absolute",
+const defaultStyle = {
   textAlign: "center",
-  bottom: 0,
   width: "100%",
   padding: 16,
-};
-
-// Paragraph Style object inside footer
-const paragraphStyle = {
-  color: "#979595",
+  backgroundColor: "#f5ba13",
+  color: "white",
+  boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.3)",
 };
 
 function FooterComponent() {
   return (
-    <footer style={footerStyle}>
-      <p style={paragraphStyle}>Created with ❤️ and ☕ - Anirban Basak</p>
+    <footer style={defaultStyle}>
+      <p>Created with ❤️ and ☕ by Anirban Basak</p>
     </footer>
   );
 }
