@@ -2,6 +2,7 @@ import { useState } from "react";
 import CardComponent from "./Card";
 import InputComponent from "./Input";
 import ButtonComponent from "./Button";
+import AddIcon from "@mui/icons-material/Add";
 
 // This is the default style for the Input Todo
 const defaultStyle = {
@@ -55,7 +56,12 @@ function InputTodoComponent({ style, onAddClick }) {
           placeholder="Enter Description"
         />
 
-        <ButtonComponent onClick={onSubmit}>Add</ButtonComponent>
+        <ButtonComponent
+          style={{ borderRadius: "50%", width: 42, height: 42 }}
+          onClick={onSubmit}
+        >
+          <AddIcon />
+        </ButtonComponent>
       </CardComponent>
     </div>
   );

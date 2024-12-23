@@ -2,7 +2,10 @@ import { useState } from "react";
 
 // This is the default styling for the Button
 const defaultStyle = {
-  padding: "12px 24px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "12px",
   borderRadius: 6,
   border: "none",
   backgroundColor: " #f5ba13",
