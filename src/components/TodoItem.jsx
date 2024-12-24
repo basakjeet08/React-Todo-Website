@@ -1,5 +1,3 @@
-import CardComponent from "./Card";
-
 // This is the common style which is used for both the Title and Description
 const commonStyle = {
   fontFamily: "McLaren, cursive",
@@ -23,11 +21,11 @@ const descriptionStyle = {
 
 function TodoItemComponent({ todo, onDeleteClick }) {
   return (
-    <CardComponent style={{ width: 350 }}>
+    <div className="card" style={{ width: 350 }}>
       <p style={titleStyle}>{todo.title}</p>
       <p style={descriptionStyle}>{todo.description}</p>
       <button onClick={onDeleteClick}>Delete</button>
-    </CardComponent>
+    </div>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CardComponent from "./Card";
 import InputComponent from "./Input";
 import AddIcon from "@mui/icons-material/Add";
 
@@ -38,7 +37,7 @@ function InputTodoComponent({ style, onAddClick }) {
   // Returning the TODO Add component
   return (
     <div style={{ ...defaultStyle, ...style }}>
-      <CardComponent style={{ flexDirection: "row", columnGap: 16 }}>
+      <div className="card" style={{ flexDirection: "row" }}>
         <InputComponent
           value={todo.title}
           onChange={updateTodo}
@@ -58,7 +57,7 @@ function InputTodoComponent({ style, onAddClick }) {
         <button className="iconButton" onClick={onSubmit}>
           <AddIcon />
         </button>
-      </CardComponent>
+      </div>
     </div>
   );
 }
