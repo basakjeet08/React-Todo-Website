@@ -2,6 +2,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "McLaren", cursive;
 }
 
 html {
@@ -17,4 +18,31 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #f5ba13;
+  color: white;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button:active {
+  opacity: 0.5;
+}
+
+.iconButton {
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
 }

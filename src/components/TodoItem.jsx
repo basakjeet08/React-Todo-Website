@@ -1,5 +1,4 @@
 import CardComponent from "./Card";
-import ButtonComponent from "./Button";
 
 // This is the common style which is used for both the Title and Description
 const commonStyle = {
@@ -27,7 +26,7 @@ function TodoItemComponent({ todo, onDeleteClick }) {
     <CardComponent style={{ width: 350 }}>
       <p style={titleStyle}>{todo.title}</p>
       <p style={descriptionStyle}>{todo.description}</p>
-      <ButtonComponent onClick={onDeleteClick}>Delete</ButtonComponent>
+      <button onClick={onDeleteClick}>Delete</button>
     </CardComponent>
   );
 }
