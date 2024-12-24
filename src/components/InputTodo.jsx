@@ -38,7 +38,7 @@ function InputTodoComponent({ style, onAddClick }) {
   return (
     <div style={{ ...defaultStyle, ...style }}>
       <div className="card" style={{ flexDirection: "row" }}>
-        <InputComponent
+        <input
           value={todo.title}
           onChange={updateTodo}
           name="title"
@@ -46,7 +46,7 @@ function InputTodoComponent({ style, onAddClick }) {
           placeholder="Enter Title"
         />
 
-        <InputComponent
+        <input
           value={todo.description}
           onChange={updateTodo}
           name="description"
