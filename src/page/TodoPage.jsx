@@ -1,11 +1,11 @@
-import HeaderComponent from "./Header";
-import FooterComponent from "./Footer";
-import InputTodoComponent from "./InputTodo";
-import TodoUIComponent from "./TodoUI";
+import HeaderComponent from "../components/Header";
+import FooterComponent from "../components/Footer";
+import InputTodoComponent from "../components/InputTodo";
+import TodoUIComponent from "../components/TodoUI";
 import todoList from "../utilities/Constants";
 import { useState } from "react";
 
-function App() {
+function TodoPage() {
   // Todo List State
   const [todoState, setTodoState] = useState(todoList);
 
@@ -34,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default TodoPage;
