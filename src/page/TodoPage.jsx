@@ -1,5 +1,3 @@
-import HeaderComponent from "../components/Header";
-import FooterComponent from "../components/Footer";
 import InputTodoComponent from "../components/InputTodo";
 import TodoUIComponent from "../components/TodoUI";
 import todoList from "../utilities/Constants";
@@ -24,12 +22,18 @@ function TodoPage() {
 
   return (
     <>
-      <HeaderComponent headerTitle="Reactive Todos" />
+      <header>
+        <h1>Reactive Todos</h1>
+      </header>
+
       <div style={{ flex: 1 }}>
         <InputTodoComponent onAddClick={onAdd} />
         <TodoUIComponent todoList={todoState} onDelete={onDelete} />
       </div>
-      <FooterComponent />
+
+      <footer>
+        <p>Created with ❤️ and ☕ by Anirban Basak</p>
+      </footer>
     </>
   );
 }
