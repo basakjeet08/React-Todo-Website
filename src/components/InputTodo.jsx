@@ -1,13 +1,6 @@
 import { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 
-// This is the default style for the Input Todo
-const defaultStyle = {
-  display: "flex",
-  justifyContent: "center",
-  padding: 8,
-};
-
 function InputTodoComponent({ style, onAddClick }) {
   // Todo State Hook
   const [todo, setTodo] = useState({
@@ -35,7 +28,7 @@ function InputTodoComponent({ style, onAddClick }) {
 
   // Returning the TODO Add component
   return (
-    <div style={{ ...defaultStyle, ...style }}>
+    <div className="input-container">
       <div className="card" style={{ flexDirection: "row" }}>
         <input
           value={todo.title}

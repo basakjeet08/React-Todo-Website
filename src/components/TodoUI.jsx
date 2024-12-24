@@ -1,16 +1,8 @@
 import TodoItemComponent from "./TodoItem";
 
-const defaultStyle = {
-  display: "flex",
-  flexWrap: "wrap",
-  rowGap: 16,
-  columnGap: 16,
-  padding: 16,
-};
-
 function TodoUIComponent({ todoList, onDelete }) {
   return (
-    <div style={defaultStyle}>
+    <div className="todo-list-container">
       {todoList.map((todo, index) => (
         <TodoItemComponent
           key={index}

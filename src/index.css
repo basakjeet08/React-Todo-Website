@@ -94,3 +94,33 @@ button:active {
 .card:hover {
   box-shadow: 1px 3px 20px #ccc;
 }
+
+.todo-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 16px;
+  column-gap: 16px;
+  padding: 16px;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+}
+
+.todo-title,
+.todo-description {
+  text-align: center;
+  cursor: default;
+}
+
+.todo-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.todo-description {
+  font-size: 14px;
+  font-weight: 100;
+}
