@@ -124,3 +124,10 @@ button:active {
   font-size: 14px;
   font-weight: 100;
 }
+
+.auth-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
