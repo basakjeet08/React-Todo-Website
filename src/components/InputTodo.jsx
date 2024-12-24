@@ -1,5 +1,4 @@
 import { useState } from "react";
-import InputComponent from "./Input";
 import AddIcon from "@mui/icons-material/Add";
 
 // This is the default style for the Input Todo
