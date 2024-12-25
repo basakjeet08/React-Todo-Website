@@ -1,31 +1,31 @@
 import InputTodoComponent from "../components/InputTodo";
 import TodoUIComponent from "../components/TodoUI";
 import { useEffect, useState } from "react";
-import { fetchUserTodo, postTodo } from "../services/TodoService";
+import { deleteTodo, fetchUserTodo, postTodo } from "../services/TodoService";
 
 function TodoPage() {
   // Todo List State
   const [todoState, setTodoState] = useState([]);
 
-  useEffect(() => {
+  const fetchData = () => {
     fetchUserTodo()
       .then((data) => setTodoState(data))
       .catch((error) => console.log(`Error Occured : ${error}`));
-  }, []);
+  };
+
+  useEffect(() => fetchData(), []);
 
   // When the User Adds a Todo
   const onAdd = (todo) => {
     if (todo.title === "") return;
-    postTodo(todo).then((data) => {
-      setTodoState((prevTodoState) => [...prevTodoState, data]);
-    });
+    postTodo(todo).then(() => fetchData());
   };
 
   // When we delete an todo List
   const onDelete = (indexToDelete) => {
-    setTodoState((prevTodoState) => {
-      return prevTodoState.filter((_todo, index) => index != indexToDelete);
-    });
+    deleteTodo(todoState[indexToDelete].id)
+      .then(() => fetchData())
+      .catch((error) => console.log(error));
   };
 
   return (

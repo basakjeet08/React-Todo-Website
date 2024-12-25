@@ -37,3 +37,14 @@ export async function postTodo(todoData) {
       throw error;
     });
 }
+
+export async function deleteTodo(todoId) {
+  return fetch(BASE_URL + TODO_ENDPOINT + `/${todoId}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${globalThis.token}`,
+    },
+  }).then((response) => {
+    if (!response.ok) throw new Error("Error Occured in Deleting TODO");
+  });
+}
