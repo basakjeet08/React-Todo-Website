@@ -1,27 +1,9 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useUserHook from "../hooks/UseUserHook";
 
 function RegisterPage() {
   // User State variable
-  const [user, setUser] = useState({
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-  });
-
-  // Update function Variable
-  const updateUser = (event) => {
-    const type = event.target.name;
-    const value = event.target.value;
-
-    setUser((previousUser) => {
-      return {
-        ...previousUser,
-        [type]: value,
-      };
-    });
-  };
+  const [user, setUser] = useUserHook();
 
   const onRegister = () => {
     console.log(user);
@@ -35,7 +17,7 @@ function RegisterPage() {
         <h1>Register</h1>
         <input
           value={user.name}
-          onChange={updateUser}
+          onChange={setUser}
           name="name"
           type="text"
           placeholder="Enter Name"
@@ -43,7 +25,7 @@ function RegisterPage() {
 
         <input
           value={user.username}
-          onChange={updateUser}
+          onChange={setUser}
           name="username"
           type="text"
           placeholder="Enter Username"
@@ -51,7 +33,7 @@ function RegisterPage() {
 
         <input
           value={user.email}
-          onChange={updateUser}
+          onChange={setUser}
           name="email"
           type="email"
           placeholder="Enter Email"
@@ -59,7 +41,7 @@ function RegisterPage() {
 
         <input
           value={user.password}
-          onChange={updateUser}
+          onChange={setUser}
           name="password"
           type="password"
           placeholder="Enter Password"
