@@ -1,31 +1,20 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../services/AuthService";
+import useUserHook from "../hooks/UseUserHook";
 
 function LoginPage() {
   // User State variable
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
-  });
-
-  // Update function Variable
-  const updateUser = (event) => {
-    const type = event.target.name;
-    const value = event.target.value;
-
-    setUser((previousUser) => {
-      return {
-        ...previousUser,
-        [type]: value,
-      };
-    });
-  };
+  const [user, setUser] = useUserHook();
+  const navigate = useNavigate();
 
   const onLogin = () => {
-    console.log(user);
+    loginUser(user)
+      .then((tokenData) => {
+        globalThis.token = tokenData.token;
+        navigate("/home");
+      })
+      .catch((error) => alert(error));
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="auth-container">
@@ -34,7 +23,7 @@ function LoginPage() {
 
         <input
           value={user.username}
-          onChange={updateUser}
+          onChange={setUser}
           name="username"
           type="text"
           placeholder="Enter Username"
@@ -42,7 +31,7 @@ function LoginPage() {
 
         <input
           value={user.password}
-          onChange={updateUser}
+          onChange={setUser}
           name="password"
           type="password"
           placeholder="Enter Password"

@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import useUserHook from "../hooks/UseUserHook";
+import { registerUser } from "../services/AuthService";
 
 function RegisterPage() {
   // User State variable
   const [user, setUser] = useUserHook();
+  const navigate = useNavigate();
 
   const onRegister = () => {
-    console.log(user);
+    registerUser(user)
+      .then((_) => navigate("/"))
+      .catch((error) => console.log(error));
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="auth-container">
