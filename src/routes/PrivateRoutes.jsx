@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 const isAuthenticated = () => {
   const token = localStorage.getItem("token");
-  return !token;
+  return !!token;
 };
 
 function PrivateRoutes({ children }) {

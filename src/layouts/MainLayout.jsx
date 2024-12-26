@@ -4,7 +4,7 @@ import "./index.css";
 function MainLayout() {
   const navigate = useNavigate();
   const onLogoutClick = () => {
-    localStorage.setItem("token", null);
+    localStorage.setItem("token", "");
     navigate("/login");
   };
 
