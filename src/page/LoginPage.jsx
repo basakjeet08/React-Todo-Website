@@ -7,11 +7,14 @@ function LoginPage() {
   const [user, setUser] = useUserHook();
   const navigate = useNavigate();
 
+  const navigateToRegister = () => navigate("/register");
+  const navigateToHome = () => navigate("/");
+
   const onLogin = () => {
     loginUser(user)
       .then((tokenData) => {
-        globalThis.token = tokenData.token;
-        navigate("/home");
+        localStorage.setItem("token", tokenData.token);
+        navigateToHome();
       })
       .catch((error) => alert(error));
   };
@@ -38,7 +41,7 @@ function LoginPage() {
         />
 
         <button onClick={onLogin}>Login</button>
-        <button onClick={() => navigate("register")}>Register</button>
+        <button onClick={navigateToRegister}>Register</button>
       </div>
     </div>
   );

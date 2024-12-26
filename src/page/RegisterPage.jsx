@@ -6,10 +6,11 @@ function RegisterPage() {
   // User State variable
   const [user, setUser] = useUserHook();
   const navigate = useNavigate();
+  const navigateToLogin = () => navigate("/login");
 
   const onRegister = () => {
     registerUser(user)
-      .then((_) => navigate("/"))
+      .then((_) => navigateToLogin())
       .catch((error) => console.log(error));
   };
 
@@ -50,7 +51,7 @@ function RegisterPage() {
         />
 
         <button onClick={onRegister}>Register</button>
-        <button onClick={() => navigate("/")}>Login</button>
+        <button onClick={navigateToLogin}>Login</button>
       </div>
     </div>
   );
