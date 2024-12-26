@@ -3,20 +3,53 @@ import TodoPage from "../page/TodoPage";
 import RegisterPage from "../page/RegisterPage";
 import LoginPage from "../page/LoginPage";
 import PrivateRoutes from "./PrivateRoutes";
+import AddTodoPage from "../page/AddTodoPage";
+import MainLayout from "../layouts/MainLayout";
+import AddCategories from "../page/AddCategories";
+import ShowCategories from "../page/ShowCategories";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* This path is the Home TODO Page which is a private route */}
-        <Route
-          path="/"
-          element={
-            <PrivateRoutes>
-              <TodoPage />
-            </PrivateRoutes>
-          }
-        />
+        <Route element={<MainLayout />}>
+          {/* This path is the Home TODO Page which is a private route */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoutes>
+                <TodoPage />
+              </PrivateRoutes>
+            }
+          />
+
+          <Route
+            path="/add-todo"
+            element={
+              <PrivateRoutes>
+                <AddTodoPage />
+              </PrivateRoutes>
+            }
+          />
+
+          <Route
+            path="/add-categories"
+            element={
+              <PrivateRoutes>
+                <AddCategories />
+              </PrivateRoutes>
+            }
+          />
+
+          <Route
+            path="/show-categories"
+            element={
+              <PrivateRoutes>
+                <ShowCategories />
+              </PrivateRoutes>
+            }
+          />
+        </Route>
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

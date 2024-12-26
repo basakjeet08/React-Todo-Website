@@ -29,20 +29,10 @@ function TodoPage() {
   };
 
   return (
-    <>
-      <header>
-        <h1>Reactive Todos</h1>
-      </header>
-
-      <div style={{ flex: 1 }}>
-        <InputTodoComponent onAddClick={onAdd} />
-        <TodoUIComponent todoList={todoState} onDelete={onDelete} />
-      </div>
-
-      <footer>
-        <p>Created with ❤️ and ☕ by Anirban Basak</p>
-      </footer>
-    </>
+    <div style={{ flex: 1 }}>
+      <InputTodoComponent onAddClick={onAdd} />
+      <TodoUIComponent todoList={todoState} onDelete={onDelete} />
+    </div>
   );
 }
 
