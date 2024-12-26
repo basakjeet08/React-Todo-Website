@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
-import TodoPage from "../page/TodoPage";
+import ShowTodoPage from "../page/ShowTodoPage";
 import RegisterPage from "../page/RegisterPage";
 import LoginPage from "../page/LoginPage";
 import PrivateRoutes from "./PrivateRoutes";
@@ -18,7 +18,7 @@ function AppRoutes() {
             path="/"
             element={
               <PrivateRoutes>
-                <TodoPage />
+                <ShowTodoPage />
               </PrivateRoutes>
             }
           />

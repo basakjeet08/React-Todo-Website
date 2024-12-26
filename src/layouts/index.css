@@ -33,11 +33,17 @@ header > ul > a {
 }
 
 header > ul > a:hover {
-  background-color: black;
+  background-color: white;
+  color: #f5ba13;
 }
 
 header > ul > a:active {
   opacity: 0.8;
+}
+
+.active {
+  background-color: white;
+  color: #f5ba13;
 }
 
 .logout-btn {

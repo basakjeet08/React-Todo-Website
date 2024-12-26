@@ -1,4 +1,4 @@
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, NavLink } from "react-router-dom";
 import "./index.css";
 
 function MainLayout() {
@@ -14,21 +14,21 @@ function MainLayout() {
         <h1>Reactive Todos</h1>
 
         <ul>
-          <Link to="/add-todo">
+          <NavLink to="/add-todo">
             <li>Add TODO</li>
-          </Link>
+          </NavLink>
 
-          <Link to="/">
+          <NavLink to="/">
             <li>Show TODO</li>
-          </Link>
+          </NavLink>
 
-          <Link to="add-categories">
+          <NavLink to="add-categories">
             <li>Add Categories</li>
-          </Link>
+          </NavLink>
 
-          <Link to="show-categories">
+          <NavLink to="show-categories">
             <li>Show Categories</li>
-          </Link>
+          </NavLink>
         </ul>
 
         <button className="logout-btn" onClick={onLogoutClick}>
