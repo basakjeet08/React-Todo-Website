@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import TodoItemComponent from "../components/TodoItem";
-import useFetchTodo from "../hooks/useFetchTodo";
+import useTodo from "../hooks/useTodo";
 
 function ShowTodoPage() {
   // Todo State
-  const { data, fetchTodo, deleteTodoById } = useFetchTodo();
+  const { data, fetchTodo, deleteTodoById } = useTodo();
 
   useEffect(() => {
     fetchTodo();

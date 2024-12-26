@@ -1,8 +1,10 @@
 import InputTodoComponent from "../components/InputTodo";
-import { postTodo } from "../services/TodoService";
+import useTodo from "../hooks/useTodo";
 
 function AddTodoPage() {
   // When the User Adds a Todo
+  const { postTodo } = useTodo();
+
   const onAdd = (todo) => {
     if (todo.title === "") return;
     postTodo(todo);
