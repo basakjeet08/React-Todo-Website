@@ -18,7 +18,9 @@ function InputTodoComponent({ style, onAddClick }) {
     });
   };
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
+    event.preventDefault();
+
     onAddClick(todo);
     setTodo({
       title: "",
@@ -29,7 +31,11 @@ function InputTodoComponent({ style, onAddClick }) {
   // Returning the TODO Add component
   return (
     <div className="input-container">
-      <div className="card" style={{ flexDirection: "row" }}>
+      <form
+        onSubmit={onSubmit}
+        className="card"
+        style={{ flexDirection: "row" }}
+      >
         <input
           value={todo.title}
           onChange={updateTodo}
@@ -46,10 +52,10 @@ function InputTodoComponent({ style, onAddClick }) {
           placeholder="Enter Description"
         />
 
-        <button className="iconButton" onClick={onSubmit}>
+        <button className="iconButton" type="submit">
           <AddIcon />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

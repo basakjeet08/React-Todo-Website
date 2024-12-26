@@ -8,7 +8,9 @@ function RegisterPage() {
   const navigate = useNavigate();
   const navigateToLogin = () => navigate("/login");
 
-  const onRegister = () => {
+  const onRegister = (event) => {
+    event.preventDefault();
+
     registerUser(user)
       .then((_) => navigateToLogin())
       .catch((error) => console.log(error));
@@ -16,7 +18,11 @@ function RegisterPage() {
 
   return (
     <div className="auth-container">
-      <div className="card" style={{ padding: 48, rowGap: 24 }}>
+      <form
+        onSubmit={onRegister}
+        className="card"
+        style={{ padding: 48, rowGap: 24 }}
+      >
         <h1>Register</h1>
         <input
           value={user.name}
@@ -24,6 +30,7 @@ function RegisterPage() {
           name="name"
           type="text"
           placeholder="Enter Name"
+          autoComplete="name"
         />
 
         <input
@@ -32,6 +39,7 @@ function RegisterPage() {
           name="username"
           type="text"
           placeholder="Enter Username"
+          autoComplete="username"
         />
 
         <input
@@ -40,6 +48,7 @@ function RegisterPage() {
           name="email"
           type="email"
           placeholder="Enter Email"
+          autoComplete="email"
         />
 
         <input
@@ -48,11 +57,12 @@ function RegisterPage() {
           name="password"
           type="password"
           placeholder="Enter Password"
+          autoComplete="new-password"
         />
 
-        <button onClick={onRegister}>Register</button>
+        <button type="submit">Register</button>
         <button onClick={navigateToLogin}>Login</button>
-      </div>
+      </form>
     </div>
   );
 }

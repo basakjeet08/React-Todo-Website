@@ -10,18 +10,24 @@ function LoginPage() {
   const navigateToRegister = () => navigate("/register");
   const navigateToHome = () => navigate("/");
 
-  const onLogin = () => {
+  const onLogin = (event) => {
+    event.preventDefault();
+
     loginUser(user)
       .then((tokenData) => {
         localStorage.setItem("token", tokenData.token);
         navigateToHome();
       })
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
   return (
     <div className="auth-container">
-      <div className="card" style={{ padding: 48, rowGap: 24 }}>
+      <form
+        onSubmit={onLogin}
+        className="card"
+        style={{ padding: 48, rowGap: 24 }}
+      >
         <h1>Login</h1>
 
         <input
@@ -30,6 +36,7 @@ function LoginPage() {
           name="username"
           type="text"
           placeholder="Enter Username"
+          autoComplete="username"
         />
 
         <input
@@ -38,11 +45,12 @@ function LoginPage() {
           name="password"
           type="password"
           placeholder="Enter Password"
+          autoComplete="password"
         />
 
-        <button onClick={onLogin}>Login</button>
+        <button type="submit">Login</button>
         <button onClick={navigateToRegister}>Register</button>
-      </div>
+      </form>
     </div>
   );
 }
