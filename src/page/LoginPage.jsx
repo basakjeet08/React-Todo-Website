@@ -1,24 +1,25 @@
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../services/AuthService";
 import useUserHook from "../hooks/UseUserHook";
+import useLogin from "../hooks/useLogin";
+import { useEffect } from "react";
 
 function LoginPage() {
-  // User State variable
+  // State variable
   const [user, setUser] = useUserHook();
+  const { data, loading, error, onFetch } = useLogin();
   const navigate = useNavigate();
-
   const navigateToRegister = () => navigate("/register");
   const navigateToHome = () => navigate("/");
 
+  // Re - running the function after each change in the data variable
+  useEffect(() => {
+    if (data) navigateToHome();
+  }, [data]);
+
+  // When the user hits Login Button
   const onLogin = (event) => {
     event.preventDefault();
-
-    loginUser(user)
-      .then((tokenData) => {
-        localStorage.setItem("token", tokenData.token);
-        navigateToHome();
-      })
-      .catch((error) => console.log(error));
+    onFetch(user);
   };
 
   return (
@@ -48,8 +49,14 @@ function LoginPage() {
           autoComplete="password"
         />
 
-        <button type="submit">Login</button>
-        <button onClick={navigateToRegister}>Register</button>
+        <button disabled={loading} type="submit">
+          {loading ? "Logging In..." : "Login"}
+        </button>
+        <button disabled={loading} onClick={navigateToRegister}>
+          Register
+        </button>
+
+        {error ? <p className="error-text">{error.message}</p> : null}
       </form>
     </div>
   );

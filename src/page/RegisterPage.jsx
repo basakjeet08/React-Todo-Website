@@ -71,9 +71,7 @@ function RegisterPage() {
         <button disabled={loading} onClick={navigateToLogin}>
           Login
         </button>
-        {error ? (
-          <p style={{ color: "red", textAlign: "center" }}>{error.message}</p>
-        ) : null}
+        {error ? <p className="error-text">{error.message}</p> : null}
       </form>
     </div>
   );

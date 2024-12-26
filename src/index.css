@@ -131,3 +131,8 @@ button:active {
   justify-content: center;
   align-items: center;
 }
+
+.error-text {
+  color: red;
+  text-align: center;
+}
