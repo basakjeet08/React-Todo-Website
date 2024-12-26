@@ -40,6 +40,11 @@ header > ul > a:active {
   opacity: 0.8;
 }
 
+.logout-btn {
+  background-color: white;
+  color: #f5ba13;
+}
+
 footer {
   text-align: center;
   width: 100%;

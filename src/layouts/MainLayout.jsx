@@ -1,7 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 import "./index.css";
 
 function MainLayout() {
+  const navigate = useNavigate();
+  const onLogoutClick = () => {
+    localStorage.setItem("token", null);
+    navigate("/login");
+  };
+
   return (
     <>
       <header>
@@ -24,6 +30,10 @@ function MainLayout() {
             <li>Show Categories</li>
           </Link>
         </ul>
+
+        <button className="logout-btn" onClick={onLogoutClick}>
+          Logout
+        </button>
       </header>
 
       <Outlet />
