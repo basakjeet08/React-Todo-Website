@@ -4,7 +4,7 @@ function TodoItemComponent({ todo, onDeleteClick, deleteCheckpoint }) {
       <p className="todo-title">{todo.title}</p>
       <p className="todo-description">{todo.description}</p>
 
-      <div className="checkpoint-card card">
+      <div className="secondary-card card">
         <h2>Checkpoints</h2>
         <ul>
           {todo.checkpoints.map((checkpoint, index) => (

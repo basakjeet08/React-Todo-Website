@@ -1,7 +1,7 @@
 import { useState } from "react";
 import InputTodoComponent from "../components/InputTodo";
 import useTodo from "../hooks/useTodo";
-import CheckpointUI from "../components/CheckpointUI/CheckpointUI";
+import CheckpointUI from "../components/CheckpointUI";
 import useInputTodo from "../hooks/useInputTodo";
 
 function AddTodoPage() {

@@ -1,8 +1,6 @@
-import "./index.css";
-
 function CheckpointUI({ checkpointList, deleteCheckpoint, onSubmit }) {
   return (
-    <div className="card checkpoint-card">
+    <div className="card secondary-card">
       <h2>Checkpoints</h2>
       <p>
         Add Checkpoints in the Left Section and delete by clicking on them here
