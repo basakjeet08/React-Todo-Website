@@ -11,7 +11,7 @@ function CheckpointUI({ checkpointList, deleteCheckpoint, onSubmit }) {
 
       <ul>
         {checkpointList.map((checkpoint, index) => (
-          <li onClick={() => deleteCheckpoint(index)}>
+          <li key={index} onClick={() => deleteCheckpoint(index)}>
             {checkpoint.description}
           </li>
         ))}

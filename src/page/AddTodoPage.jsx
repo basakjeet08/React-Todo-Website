@@ -29,8 +29,7 @@ function AddTodoPage() {
   const { postTodo } = useTodo();
 
   const onSubmit = () => {
-    todo.checkpoints = checkpointList;
-    postTodo(todo);
+    postTodo({ ...todo, checkpoints: checkpointList });
 
     resetTodo();
     resetCheckpoint();

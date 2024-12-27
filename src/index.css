@@ -124,3 +124,7 @@ button:active {
   color: red;
   text-align: center;
 }
+
+.cut-text {
+  text-decoration: line-through;
+}
