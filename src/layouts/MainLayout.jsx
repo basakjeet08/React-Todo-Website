@@ -21,14 +21,6 @@ function MainLayout() {
           <NavLink to="/">
             <li>Show TODO</li>
           </NavLink>
-
-          <NavLink to="add-categories">
-            <li>Add Categories</li>
-          </NavLink>
-
-          <NavLink to="show-categories">
-            <li>Show Categories</li>
-          </NavLink>
         </ul>
 
         <button className="logout-btn" onClick={onLogoutClick}>

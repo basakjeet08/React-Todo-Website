@@ -5,8 +5,6 @@ import LoginPage from "../page/LoginPage";
 import PrivateRoutes from "./PrivateRoutes";
 import AddTodoPage from "../page/AddTodoPage";
 import MainLayout from "../layouts/MainLayout";
-import AddCategories from "../page/AddCategories";
-import ShowCategories from "../page/ShowCategories";
 
 function AppRoutes() {
   return (
@@ -28,24 +26,6 @@ function AppRoutes() {
             element={
               <PrivateRoutes>
                 <AddTodoPage />
-              </PrivateRoutes>
-            }
-          />
-
-          <Route
-            path="/add-categories"
-            element={
-              <PrivateRoutes>
-                <AddCategories />
-              </PrivateRoutes>
-            }
-          />
-
-          <Route
-            path="/show-categories"
-            element={
-              <PrivateRoutes>
-                <ShowCategories />
               </PrivateRoutes>
             }
           />
