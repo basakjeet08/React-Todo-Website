@@ -56,6 +56,7 @@ function useLogin() {
 
       // Storing the token in our Local Storage
       localStorage.setItem("token", apiData.token);
+      localStorage.setItem("refreshToken", apiData.refreshToken);
       setData(apiData);
     } catch (error) {
       setError(error);

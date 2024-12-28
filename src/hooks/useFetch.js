@@ -5,20 +5,12 @@ function useFetch() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async (url, extras = {}) => {
+  const fetchData = async (url, options) => {
     try {
       setLoading(true);
       setError(null);
 
-      const token = localStorage.getItem("token");
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-          ...(extras?.headers || {}),
-        },
-        ...extras,
-      });
+      const response = await fetch(url, options);
 
       if (!response.ok) {
         const errorResponse = await response.json();
