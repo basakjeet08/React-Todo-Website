@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import useTodo from "../hooks/useTodo";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
+import RowCard from "../components/RowCard";
+import TodoItem from "../components/TodoItem";
+import TextArea from "../components/TextArea";
+import PrimaryButton from "../components/PrimaryButton";
 
 function ShowTodoPage() {
   // Todo State
@@ -19,35 +23,29 @@ function ShowTodoPage() {
   useEffect(() => fetchTodo(), []);
 
   return (
-    <div style={{ flex: 1 }}>
-      <div className="todo-list-container">
-        <div
-          style={{ display: "flex", width: "100%", justifyContent: "center" }}
-        >
-          <form
-            className="card"
-            onSubmit={onTodoSubmit}
-            style={{ flexDirection: "row" }}
-          >
-            <input
+    <div className="flex-1">
+      <div className="flex flex-wrap gap-4 p-4">
+        <div className="flex w-screen justify-center">
+          <RowCard>
+            <TextArea
               type="text"
-              style={{ width: 500 }}
               value={todoInput.description}
               onChange={(event) => updateTodo(event.target.value)}
               placeholder="Enter New Todo to Add"
             />
 
-            <button>
+            <PrimaryButton onClick={onTodoSubmit}>
               <AddIcon />
-            </button>
-          </form>
+            </PrimaryButton>
+          </RowCard>
         </div>
 
         {data?.map((todo) => (
-          <div key={todo.id} className="card" style={{ width: 350 }}>
-            <p className="todo-description">{todo.description}</p>
-            <button onClick={() => deleteTodoById(todo.id)}>Delete</button>
-          </div>
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onClick={() => deleteTodoById(todo.id)}
+          />
         ))}
       </div>
     </div>
