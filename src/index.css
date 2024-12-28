@@ -100,13 +100,6 @@ body {
   font-weight: 100;
 }
 
-.auth-container {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .cut-text {
   text-decoration: line-through;
 }
