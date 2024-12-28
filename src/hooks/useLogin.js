@@ -4,19 +4,36 @@ import { useState } from "react";
 const LOGIN_ENDPOINT = "http://localhost:8080/login";
 
 function useLogin() {
+  const [userInput, setUserInput] = useState({
+    username: "",
+    password: "",
+  });
+
+  const updateUserInput = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setUserInput((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
   // All the states needed (Data -> Successful , Loading and Error State)
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Function which calls the API and changes the states accordingly
-  const onFetch = async ({ username, password }) => {
+  const onFetch = async () => {
     try {
       setLoading(true);
       setError(null);
 
       // checking if the user inputs are valid or not
-      isValidInput(username, password);
+      isValidInput(userInput);
 
       // Posting Data to the API
       const response = await fetch(LOGIN_ENDPOINT, {
@@ -24,7 +41,7 @@ function useLogin() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify(userInput),
       });
 
       // Checking if the API response is Status OK
@@ -47,10 +64,10 @@ function useLogin() {
     }
   };
 
-  return { data, loading, error, onFetch };
+  return { userInput, updateUserInput, data, loading, error, onFetch };
 }
 
-function isValidInput(username, password) {
+function isValidInput({ username, password }) {
   if (!username || !password) {
     throw new Error("Please Fill all the Fields");
   }

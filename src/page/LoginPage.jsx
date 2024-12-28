@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import useUserHook from "../hooks/UseUserHook";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
 
 function LoginPage() {
   // State variable
-  const [user, setUser] = useUserHook();
-  const { data, loading, error, onFetch } = useLogin();
+  const { userInput, updateUserInput, data, loading, error, onFetch } =
+    useLogin();
   const navigate = useNavigate();
   const navigateToRegister = () => navigate("/register");
   const navigateToHome = () => navigate("/");
@@ -19,7 +18,7 @@ function LoginPage() {
   // When the user hits Login Button
   const onLogin = (event) => {
     event.preventDefault();
-    onFetch(user);
+    onFetch();
   };
 
   return (
@@ -32,8 +31,8 @@ function LoginPage() {
         <h1>Login</h1>
 
         <input
-          value={user.username}
-          onChange={setUser}
+          value={userInput.username}
+          onChange={updateUserInput}
           name="username"
           type="text"
           placeholder="Enter Username"
@@ -41,8 +40,8 @@ function LoginPage() {
         />
 
         <input
-          value={user.password}
-          onChange={setUser}
+          value={userInput.password}
+          onChange={updateUserInput}
           name="password"
           type="password"
           placeholder="Enter Password"
