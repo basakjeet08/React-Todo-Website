@@ -1,69 +1,56 @@
-import { useState } from "react";
-
-const TODO_ENDPOINT = "http://localhost:8080/todos";
+import useFetch from "./useFetch";
 
 function useTodo() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const TODO_ENDPOINT = "http://localhost:8080/todos";
+  const token = localStorage.getItem("token");
+  const { data, fetchData } = useFetch();
 
-  const apiCallHandler = async (request) => {
-    try {
-      const response = await request();
-
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        const error = errorResponse.message || "Unknown Error Occured";
-        throw new Error(error);
-      }
-
-      const apiData = await response.json();
-      setData(apiData);
-    } catch (error) {
-      setError(error);
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
+  // Fetch all Todos
+  const getTodo = () => {
+    fetchData(TODO_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
   };
 
+  // Post or Create a new Todo
   const postTodo = (todo) => {
-    const token = localStorage.getItem("token");
-
-    apiCallHandler(() => {
-      return fetch(TODO_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(todo),
-      });
+    fetchData(TODO_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
     });
   };
 
-  const fetchTodo = () => {
-    const token = localStorage.getItem("token");
-
-    apiCallHandler(() => {
-      return fetch(TODO_ENDPOINT, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  // Update an existing Todo
+  const updateTodo = (checked, id) => {
+    fetchData(TODO_ENDPOINT, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id, isCompleted: checked }),
     });
   };
 
-  const deleteTodoById = (todoId) => {
-    const token = localStorage.getItem("token");
-
-    apiCallHandler(() => {
-      return fetch(TODO_ENDPOINT + `/${todoId}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+  // Delete an existing Todo
+  const deleteTodo = (todoId) => {
+    fetchData(`${TODO_ENDPOINT}/${todoId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
   };
 
-  return { data, loading, error, postTodo, fetchTodo, deleteTodoById };
+  return { data, getTodo, postTodo, updateTodo, deleteTodo };
 }
 
 export default useTodo;

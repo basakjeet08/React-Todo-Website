@@ -1,12 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import useUserHook from "../hooks/UseUserHook";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
+import Form from "../components/Form";
+import Card from "../components/Card";
+import Input from "../components/Input";
+import PrimaryButton from "../components/PrimaryButton";
 
 function LoginPage() {
   // State variable
-  const [user, setUser] = useUserHook();
-  const { data, loading, error, onFetch } = useLogin();
+  const { userInput, updateUserInput, data, loading, error, onFetch } =
+    useLogin();
   const navigate = useNavigate();
   const navigateToRegister = () => navigate("/register");
   const navigateToHome = () => navigate("/");
@@ -19,45 +22,43 @@ function LoginPage() {
   // When the user hits Login Button
   const onLogin = (event) => {
     event.preventDefault();
-    onFetch(user);
+    onFetch();
   };
 
   return (
-    <div className="auth-container">
-      <form
-        onSubmit={onLogin}
-        className="card"
-        style={{ padding: 48, rowGap: 24 }}
-      >
-        <h1>Login</h1>
+    <div className="flex h-screen w-screen justify-center items-center">
+      <Card>
+        <h1 className="font-bold text-2xl text-primary">Login</h1>
+        <Form onSubmit={onLogin}>
+          <Input
+            value={userInput.username}
+            onChange={updateUserInput}
+            name="username"
+            type="text"
+            placeholder="Enter Username"
+            autoComplete="username"
+          />
 
-        <input
-          value={user.username}
-          onChange={setUser}
-          name="username"
-          type="text"
-          placeholder="Enter Username"
-          autoComplete="username"
-        />
+          <Input
+            value={userInput.password}
+            onChange={updateUserInput}
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+            autoComplete="password"
+          />
 
-        <input
-          value={user.password}
-          onChange={setUser}
-          name="password"
-          type="password"
-          placeholder="Enter Password"
-          autoComplete="password"
-        />
-
-        <button disabled={loading} type="submit">
-          {loading ? "Logging In..." : "Login"}
-        </button>
-        <button disabled={loading} onClick={navigateToRegister}>
-          Register
-        </button>
-
-        {error ? <p className="error-text">{error.message}</p> : null}
-      </form>
+          <PrimaryButton disabled={loading} type="submit">
+            {loading ? "Logging In..." : "Login"}
+          </PrimaryButton>
+          <PrimaryButton disabled={loading} onClick={navigateToRegister}>
+            Register
+          </PrimaryButton>
+        </Form>
+        {error ? (
+          <p className="text-red-400 text-center">{error.message}</p>
+        ) : null}
+      </Card>
     </div>
   );
 }

@@ -1,36 +1,33 @@
-import { Outlet, useNavigate, NavLink } from "react-router-dom";
-import "./index.css";
+import { Outlet, useNavigate } from "react-router-dom";
+import PrimaryButton from "../components/PrimaryButton";
 
 function MainLayout() {
   const navigate = useNavigate();
   const onLogoutClick = () => {
-    localStorage.setItem("token", "");
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
     navigate("/login");
   };
 
   return (
     <>
-      <header>
-        <h1>Reactive Todos</h1>
+      <header className="flex flex-row align-baseline justify-between gap-4 shadow-lg py-4 px-8 bg-primary">
+        <h1 className="text-secondary font-normal text-3xl cursor-pointer">
+          Reactive Todos
+        </h1>
 
-        <ul>
-          <NavLink to="/add-todo">
-            <li>Add TODO</li>
-          </NavLink>
-
-          <NavLink to="/">
-            <li>Show TODO</li>
-          </NavLink>
-        </ul>
-
-        <button className="logout-btn" onClick={onLogoutClick}>
+        <PrimaryButton
+          bgColor="bg-secondary"
+          color="text-primary"
+          onClick={onLogoutClick}
+        >
           Logout
-        </button>
+        </PrimaryButton>
       </header>
 
       <Outlet />
 
-      <footer>
+      <footer className="flex justify-center p-4 text-text shadow-lg bg-primary">
         <p>Created with ❤️ and ☕ by Anirban Basak</p>
       </footer>
     </>

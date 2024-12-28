@@ -3,7 +3,6 @@ import ShowTodoPage from "../page/ShowTodoPage";
 import RegisterPage from "../page/RegisterPage";
 import LoginPage from "../page/LoginPage";
 import PrivateRoutes from "./PrivateRoutes";
-import AddTodoPage from "../page/AddTodoPage";
 import MainLayout from "../layouts/MainLayout";
 
 function AppRoutes() {
@@ -17,15 +16,6 @@ function AppRoutes() {
             element={
               <PrivateRoutes>
                 <ShowTodoPage />
-              </PrivateRoutes>
-            }
-          />
-
-          <Route
-            path="/add-todo"
-            element={
-              <PrivateRoutes>
-                <AddTodoPage />
               </PrivateRoutes>
             }
           />
