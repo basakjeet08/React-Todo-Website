@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import useTodo from "../hooks/useTodo";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
-import RowCard from "../components/RowCard";
+import Card from "../components/Card";
 import TodoItem from "../components/TodoItem";
 import TextArea from "../components/TextArea";
 import PrimaryButton from "../components/PrimaryButton";
@@ -26,7 +26,7 @@ function ShowTodoPage() {
     <div className="flex-1">
       <div className="flex flex-wrap gap-4 p-4">
         <div className="flex w-screen justify-center">
-          <RowCard>
+          <Card direction="flex-row">
             <TextArea
               type="text"
               value={todoInput.description}
@@ -37,7 +37,7 @@ function ShowTodoPage() {
             <PrimaryButton onClick={onTodoSubmit}>
               <AddIcon />
             </PrimaryButton>
-          </RowCard>
+          </Card>
         </div>
 
         {data?.map((todo) => (

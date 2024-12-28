@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
 import Form from "../components/Form";
-import ColumnCard from "../components/ColumnCard";
+import Card from "../components/Card";
 import Input from "../components/Input";
 import PrimaryButton from "../components/PrimaryButton";
 
@@ -27,7 +27,7 @@ function LoginPage() {
 
   return (
     <div className="flex h-screen w-screen justify-center items-center">
-      <ColumnCard>
+      <Card>
         <h1 className="font-bold text-2xl text-primary">Login</h1>
         <Form onSubmit={onLogin}>
           <Input
@@ -58,7 +58,7 @@ function LoginPage() {
         {error ? (
           <p className="text-red-400 text-center">{error.message}</p>
         ) : null}
-      </ColumnCard>
+      </Card>
     </div>
   );
 }
