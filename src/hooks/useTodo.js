@@ -52,6 +52,18 @@ function useTodo() {
     });
   };
 
+  const completeTodo = (checked, id) => {
+    const token = localStorage.getItem("token");
+    return fetch(TODO_ENDPOINT, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id, isCompleted: checked }),
+    });
+  };
+
   const deleteTodoById = (todoId) => {
     const token = localStorage.getItem("token");
 
@@ -63,7 +75,15 @@ function useTodo() {
     });
   };
 
-  return { data, loading, error, postTodo, fetchTodo, deleteTodoById };
+  return {
+    data,
+    loading,
+    error,
+    postTodo,
+    fetchTodo,
+    completeTodo,
+    deleteTodoById,
+  };
 }
 
 export default useTodo;

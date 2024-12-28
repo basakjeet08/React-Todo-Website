@@ -10,7 +10,7 @@ import PrimaryButton from "../components/PrimaryButton";
 function ShowTodoPage() {
   // Todo State
   const [todoInput, setTodoInput] = useState({ description: "" });
-  const { data, postTodo, fetchTodo, deleteTodoById } = useTodo();
+  const { data, postTodo, fetchTodo, completeTodo, deleteTodoById } = useTodo();
 
   const updateTodo = (newValue) => setTodoInput({ description: newValue });
   const onTodoSubmit = (event) => {
@@ -45,6 +45,7 @@ function ShowTodoPage() {
             key={todo.id}
             todo={todo}
             onClick={() => deleteTodoById(todo.id)}
+            onCheck={completeTodo}
           />
         ))}
       </div>

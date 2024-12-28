@@ -16,8 +16,8 @@ function MainLayout() {
         </h1>
 
         <PrimaryButton
-          bgColor="secondary"
-          color="primary"
+          bgColor="bg-secondary"
+          color="text-primary"
           onClick={onLogoutClick}
         >
           Logout
