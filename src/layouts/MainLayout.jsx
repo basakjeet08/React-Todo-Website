@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import SecondaryButton from "../components/SecondaryButton";
+import PrimaryButton from "../components/PrimaryButton";
 
 function MainLayout() {
   const navigate = useNavigate();
@@ -15,7 +15,12 @@ function MainLayout() {
           Reactive Todos
         </h1>
 
-        <SecondaryButton onClick={onLogoutClick}>Logout</SecondaryButton>
+        <PrimaryButton
+          className="text-black bg-secondary"
+          onClick={onLogoutClick}
+        >
+          Logout
+        </PrimaryButton>
       </header>
 
       <Outlet />
