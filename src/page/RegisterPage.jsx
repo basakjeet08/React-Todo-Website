@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import useUserHook from "../hooks/UseUserHook";
 import useRegister from "../hooks/useRegister";
 import { useEffect } from "react";
 
 function RegisterPage() {
   // State variable
-  const [user, setUser] = useUserHook();
-  const { data, loading, error, onFetch } = useRegister();
+  const { userInput, updateUserInput, data, loading, error, onFetch } =
+    useRegister();
   const navigate = useNavigate();
   const navigateToLogin = () => navigate("/login");
 
@@ -18,20 +17,16 @@ function RegisterPage() {
   /// When the user hits the submit button
   const onRegister = (event) => {
     event.preventDefault();
-    onFetch(user);
+    onFetch();
   };
 
   return (
     <div className="auth-container">
-      <form
-        onSubmit={onRegister}
-        className="card"
-        style={{ padding: 48, rowGap: 24 }}
-      >
+      <form onSubmit={onRegister} className="card" style={{ padding: "56px" }}>
         <h1>Register</h1>
         <input
-          value={user.name}
-          onChange={setUser}
+          value={userInput.name}
+          onChange={updateUserInput}
           name="name"
           type="text"
           placeholder="Enter Name"
@@ -39,8 +34,8 @@ function RegisterPage() {
         />
 
         <input
-          value={user.username}
-          onChange={setUser}
+          value={userInput.username}
+          onChange={updateUserInput}
           name="username"
           type="text"
           placeholder="Enter Username"
@@ -48,20 +43,20 @@ function RegisterPage() {
         />
 
         <input
-          value={user.email}
-          onChange={setUser}
-          name="email"
-          type="email"
-          placeholder="Enter Email"
-          autoComplete="email"
-        />
-
-        <input
-          value={user.password}
-          onChange={setUser}
+          value={userInput.password}
+          onChange={updateUserInput}
           name="password"
           type="password"
           placeholder="Enter Password"
+          autoComplete="new-password"
+        />
+
+        <input
+          value={userInput.confirmPassword}
+          onChange={updateUserInput}
+          name="confirmPassword"
+          type="password"
+          placeholder="Re-Enter Password"
           autoComplete="new-password"
         />
 

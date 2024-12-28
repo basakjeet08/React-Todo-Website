@@ -4,19 +4,38 @@ import { useState } from "react";
 const REGISTER_ENDPOINT = "http://localhost:8080/register";
 
 function useRegister() {
+  const [userInput, setUserInput] = useState({
+    name: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const updateUserInput = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    setUserInput((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
+  };
+
   // All the states needed (Data -> Successful , Loading and Error State)
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // Function which calls the API and changes the states accordingly
-  const onFetch = async (user) => {
+  const onFetch = async () => {
     try {
       setLoading(true);
       setError(null);
 
       // checking if the user inputs are valid or not
-      isValidInput(user);
+      isValidInput(userInput);
 
       // Posting Data to the API
       const response = await fetch(REGISTER_ENDPOINT, {
@@ -24,7 +43,7 @@ function useRegister() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(user),
+        body: JSON.stringify(userInput),
       });
 
       // Checking if the API response is Status OK
@@ -44,16 +63,20 @@ function useRegister() {
     }
   };
 
-  return { data, loading, error, onFetch };
+  return { userInput, updateUserInput, data, loading, error, onFetch };
 }
 
-function isValidInput({ name, username, email, password }) {
-  if (!name || !username || !email || !password) {
+function isValidInput({ name, username, password, confirmPassword }) {
+  if (!name || !username || !password || !confirmPassword) {
     throw new Error("Please Enter all the Fields");
   }
 
   if (password.length < 6) {
     throw new Error("Password needs to be more than 5 characters");
+  }
+
+  if (confirmPassword !== password) {
+    throw new Error("Password and Re - Enter Password should be same");
   }
 }
 
