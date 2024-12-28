@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, NavLink } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./index.css";
 
 function MainLayout() {
@@ -12,16 +12,6 @@ function MainLayout() {
     <>
       <header>
         <h1>Reactive Todos</h1>
-
-        <ul>
-          <NavLink to="/add-todo">
-            <li>Add TODO</li>
-          </NavLink>
-
-          <NavLink to="/">
-            <li>Show TODO</li>
-          </NavLink>
-        </ul>
 
         <button className="logout-btn" onClick={onLogoutClick}>
           Logout

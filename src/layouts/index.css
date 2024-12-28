@@ -2,6 +2,7 @@ header {
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  justify-content: space-between;
 
   column-gap: 16px;
 
@@ -13,37 +14,6 @@ header {
 header > h1 {
   color: var(--textColor);
   font-weight: 400;
-}
-
-header > ul {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  column-gap: 24px;
-  justify-content: end;
-}
-
-header > ul > a {
-  padding: 8px;
-  border-radius: 8px;
-  text-decoration: none;
-  list-style-type: none;
-  color: var(--textColor);
-  transition: all 0.3s;
-}
-
-header > ul > a:hover {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-}
-
-header > ul > a:active {
-  opacity: 0.8;
-}
-
-.active {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
 }
 
 .logout-btn {
