@@ -2,7 +2,7 @@ function PrimaryButton({
   onClick,
   disabled,
   bgColor = "primary",
-  color = "white",
+  color = "secondary",
   children,
 }) {
   return (
