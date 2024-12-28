@@ -10,12 +10,22 @@ function useFetch() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(url, options);
+      let response = await fetch(url, options);
 
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        const error = errorResponse.message || "Unknown Error Occured";
-        throw new Error(error);
+      if (response.status === 403) {
+        const { token } = await refreshTokens();
+
+        if (token) {
+          const retryOptions = {
+            method: options.method || "GET",
+            headers: {
+              ...options.headers,
+              Authorization: `Bearer ${token}`,
+            },
+          };
+
+          response = await fetch(url, retryOptions);
+        }
       }
 
       const apiData = await response.json();
@@ -29,6 +39,42 @@ function useFetch() {
   };
 
   return { data, loading, error, fetchData };
+}
+
+async function refreshTokens() {
+  const url = "http://localhost:8080/verify";
+
+  try {
+    console.log("Refreshing Tokens...");
+    const refreshToken = localStorage.getItem("refreshToken");
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ refreshToken }),
+    });
+
+    const apiData = await response.json();
+
+    localStorage.setItem("token", apiData.token);
+    localStorage.setItem("refreshToken", apiData.refreshToken);
+
+    console.log("Tokens Refreshed Successfully");
+
+    return apiData;
+  } catch (error) {
+    console.error("Failed to refresh token : " + error);
+    redirectToLogin();
+    return null;
+  }
+}
+
+function redirectToLogin() {
+  localStorage.removeItem("token");
+  localStorage.removeItem("refreshToken");
+  window.location.href = "/login";
 }
 
 export default useFetch;

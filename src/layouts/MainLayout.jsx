@@ -4,7 +4,8 @@ import PrimaryButton from "../components/PrimaryButton";
 function MainLayout() {
   const navigate = useNavigate();
   const onLogoutClick = () => {
-    localStorage.setItem("token", "");
+    localStorage.removeItem("token");
+    localStorage.removeItem("refreshToken");
     navigate("/login");
   };
 
