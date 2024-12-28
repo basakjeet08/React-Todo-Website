@@ -26,7 +26,7 @@ function ShowTodoPage() {
 
   return (
     <div className="flex-1">
-      <div className="flex flex-wrap gap-4 p-4">
+      <div className="flex flex-wrap gap-4 p-4 items-start">
         <div className="flex w-screen justify-center">
           <Card direction="flex-row">
             <TextArea
