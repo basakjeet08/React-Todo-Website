@@ -9,6 +9,8 @@ function useTodo() {
 
   const apiCallHandler = async (request) => {
     try {
+      setLoading(true);
+      setError(null);
       const response = await request();
 
       if (!response.ok) {
@@ -20,8 +22,8 @@ function useTodo() {
       const apiData = await response.json();
       setData(apiData);
     } catch (error) {
-      setError(error);
       console.log(error);
+      setError(error);
     } finally {
       setLoading(false);
     }
@@ -54,13 +56,16 @@ function useTodo() {
 
   const completeTodo = (checked, id) => {
     const token = localStorage.getItem("token");
-    return fetch(TODO_ENDPOINT, {
-      method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id, isCompleted: checked }),
+
+    apiCallHandler(() => {
+      return fetch(TODO_ENDPOINT, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id, isCompleted: checked }),
+      });
     });
   };
 
