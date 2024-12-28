@@ -10,17 +10,19 @@ import PrimaryButton from "../components/PrimaryButton";
 function ShowTodoPage() {
   // Todo State
   const [todoInput, setTodoInput] = useState({ description: "" });
-  const { data, postTodo, fetchTodo, completeTodo, deleteTodoById } = useTodo();
+  const { data, getTodo, postTodo, updateTodo, deleteTodo } = useTodo();
 
-  const updateTodo = (newValue) => setTodoInput({ description: newValue });
+  const updateTodoInput = (newValue) => setTodoInput({ description: newValue });
   const onTodoSubmit = (event) => {
     event.preventDefault();
     if (!todoInput.description) return;
     postTodo(todoInput);
-    updateTodo("");
+    updateTodoInput("");
   };
 
-  useEffect(() => fetchTodo(), []);
+  useEffect(() => {
+    getTodo();
+  }, []);
 
   return (
     <div className="flex-1">
@@ -30,7 +32,7 @@ function ShowTodoPage() {
             <TextArea
               type="text"
               value={todoInput.description}
-              onChange={(event) => updateTodo(event.target.value)}
+              onChange={(event) => updateTodoInput(event.target.value)}
               placeholder="Enter New Todo to Add"
             />
 
@@ -44,8 +46,8 @@ function ShowTodoPage() {
           <TodoItem
             key={todo.id}
             todo={todo}
-            onClick={() => deleteTodoById(todo.id)}
-            onCheck={completeTodo}
+            onClick={() => deleteTodo(todo.id)}
+            onCheck={updateTodo}
           />
         ))}
       </div>
