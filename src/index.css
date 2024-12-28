@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-color: #7979fe;
   --secondary-color: white;
@@ -12,10 +16,6 @@
   font-family: "McLaren", cursive;
 }
 
-html {
-  font-family: "Montserrat", sans-serif;
-}
-
 body {
   background: var(--background-color);
   height: 100vh;
@@ -25,52 +25,6 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-
-input {
-  padding: 12px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 6;
-  border-bottom: 3px solid var(--primary-color);
-  outline: none;
-}
-
-textarea {
-  padding: 12px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 6;
-  border-bottom: 3px solid var(--primary-color);
-  outline: none;
-  resize: none;
-  width: 100%;
-}
-
-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--primary-color);
-  color: var(--textColor);
-  cursor: pointer;
-  transition: all 0.25s;
-}
-
-.button-reverse {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-button:active {
-  opacity: 0.5;
 }
 
 .iconButton {
@@ -151,11 +105,6 @@ button:active {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.error-text {
-  color: red;
-  text-align: center;
 }
 
 .cut-text {

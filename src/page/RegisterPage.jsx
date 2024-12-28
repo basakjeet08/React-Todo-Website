@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import useRegister from "../hooks/useRegister";
 import { useEffect } from "react";
+import Form from "../components/Form";
+import ColumnCard from "../components/ColumnCard";
+import Input from "../components/Input";
+import PrimaryButton from "../components/PrimaryButton";
 
 function RegisterPage() {
   // State variable
@@ -21,53 +25,58 @@ function RegisterPage() {
   };
 
   return (
-    <div className="auth-container">
-      <form onSubmit={onRegister} className="card" style={{ padding: "56px" }}>
-        <h1>Register</h1>
-        <input
-          value={userInput.name}
-          onChange={updateUserInput}
-          name="name"
-          type="text"
-          placeholder="Enter Name"
-          autoComplete="name"
-        />
+    <div className="flex h-screen w-screen justify-center items-center">
+      <ColumnCard>
+        <h1 className="font-bold text-2xl text-primary">Register</h1>
 
-        <input
-          value={userInput.username}
-          onChange={updateUserInput}
-          name="username"
-          type="text"
-          placeholder="Enter Username"
-          autoComplete="username"
-        />
+        <Form onSubmit={onRegister}>
+          <Input
+            value={userInput.name}
+            onChange={updateUserInput}
+            name="name"
+            type="text"
+            placeholder="Enter Name"
+            autoComplete="name"
+          />
 
-        <input
-          value={userInput.password}
-          onChange={updateUserInput}
-          name="password"
-          type="password"
-          placeholder="Enter Password"
-          autoComplete="new-password"
-        />
+          <Input
+            value={userInput.username}
+            onChange={updateUserInput}
+            name="username"
+            type="text"
+            placeholder="Enter Username"
+            autoComplete="username"
+          />
 
-        <input
-          value={userInput.confirmPassword}
-          onChange={updateUserInput}
-          name="confirmPassword"
-          type="password"
-          placeholder="Re-Enter Password"
-          autoComplete="new-password"
-        />
+          <Input
+            value={userInput.password}
+            onChange={updateUserInput}
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+            autoComplete="new-password"
+          />
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Registering..." : "Register"}
-        </button>
-        <button disabled={loading} onClick={navigateToLogin}>
-          Login
-        </button>
-        {error ? <p className="error-text">{error.message}</p> : null}
-      </form>
+          <Input
+            value={userInput.confirmPassword}
+            onChange={updateUserInput}
+            name="confirmPassword"
+            type="password"
+            placeholder="Re-Enter Password"
+            autoComplete="new-password"
+          />
+
+          <PrimaryButton type="submit" disabled={loading}>
+            {loading ? "Registering..." : "Register"}
+          </PrimaryButton>
+          <PrimaryButton disabled={loading} onClick={navigateToLogin}>
+            Login
+          </PrimaryButton>
+        </Form>
+        {error ? (
+          <p className="text-red-400 text-center">{error.message}</p>
+        ) : null}
+      </ColumnCard>
     </div>
   );
 }

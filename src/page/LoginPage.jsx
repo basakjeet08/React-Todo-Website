@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import useLogin from "../hooks/useLogin";
 import { useEffect } from "react";
+import Form from "../components/Form";
+import ColumnCard from "../components/ColumnCard";
+import Input from "../components/Input";
+import PrimaryButton from "../components/PrimaryButton";
 
 function LoginPage() {
   // State variable
@@ -22,41 +26,39 @@ function LoginPage() {
   };
 
   return (
-    <div className="auth-container">
-      <form
-        onSubmit={onLogin}
-        className="card"
-        style={{ padding: 48, rowGap: 24 }}
-      >
-        <h1>Login</h1>
+    <div className="flex h-screen w-screen justify-center items-center">
+      <ColumnCard>
+        <h1 className="font-bold text-2xl text-primary">Login</h1>
+        <Form onSubmit={onLogin}>
+          <Input
+            value={userInput.username}
+            onChange={updateUserInput}
+            name="username"
+            type="text"
+            placeholder="Enter Username"
+            autoComplete="username"
+          />
 
-        <input
-          value={userInput.username}
-          onChange={updateUserInput}
-          name="username"
-          type="text"
-          placeholder="Enter Username"
-          autoComplete="username"
-        />
+          <Input
+            value={userInput.password}
+            onChange={updateUserInput}
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+            autoComplete="password"
+          />
 
-        <input
-          value={userInput.password}
-          onChange={updateUserInput}
-          name="password"
-          type="password"
-          placeholder="Enter Password"
-          autoComplete="password"
-        />
-
-        <button disabled={loading} type="submit">
-          {loading ? "Logging In..." : "Login"}
-        </button>
-        <button disabled={loading} onClick={navigateToRegister}>
-          Register
-        </button>
-
-        {error ? <p className="error-text">{error.message}</p> : null}
-      </form>
+          <PrimaryButton disabled={loading} type="submit">
+            {loading ? "Logging In..." : "Login"}
+          </PrimaryButton>
+          <PrimaryButton disabled={loading} onClick={navigateToRegister}>
+            Register
+          </PrimaryButton>
+        </Form>
+        {error ? (
+          <p className="text-red-400 text-center">{error.message}</p>
+        ) : null}
+      </ColumnCard>
     </div>
   );
 }
