@@ -1,5 +1,4 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import "./index.css";
 import SecondaryButton from "../components/SecondaryButton";
 
 function MainLayout() {
