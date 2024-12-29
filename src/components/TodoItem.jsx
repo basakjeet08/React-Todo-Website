@@ -3,7 +3,7 @@ import PrimaryButton from "../components/PrimaryButton";
 
 function TodoItem({ todo, onClick, onCheck }) {
   return (
-    <div className="group flex flex-row items-center gap-4 rounded-lg p-5 bg-secondary transition-all duration-300 hover:shadow-xl w-[380px] hover:bg-primary">
+    <div className="group flex flex-row items-center gap-4 rounded-lg p-5 bg-secondary transition-all duration-300 hover:shadow-xl min-w-[280px] max-w-[420px] hover:bg-primary">
       <input
         type="checkbox"
         checked={todo.isCompleted}
