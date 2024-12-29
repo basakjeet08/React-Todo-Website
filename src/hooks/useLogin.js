@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-// Login API Endpoint
-const LOGIN_ENDPOINT = "http://localhost:8080/login";
+import { BASE_URL, LOGIN_ENDPOINT } from "../utils/urlConstants";
 
 function useLogin() {
   const [userInput, setUserInput] = useState({
@@ -36,7 +34,7 @@ function useLogin() {
       isValidInput(userInput);
 
       // Posting Data to the API
-      const response = await fetch(LOGIN_ENDPOINT, {
+      const response = await fetch(BASE_URL + LOGIN_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,13 +1,13 @@
+import { BASE_URL, TODO_ENDPOINT } from "../utils/urlConstants";
 import useFetch from "./useFetch";
 
 function useTodo() {
-  const TODO_ENDPOINT = "http://localhost:8080/todos";
   const token = localStorage.getItem("token");
   const { data, fetchData } = useFetch();
 
   // Fetch all Todos
   const getTodo = () => {
-    fetchData(TODO_ENDPOINT, {
+    fetchData(BASE_URL + TODO_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -17,7 +17,7 @@ function useTodo() {
 
   // Post or Create a new Todo
   const postTodo = (todo) => {
-    fetchData(TODO_ENDPOINT, {
+    fetchData(BASE_URL + TODO_ENDPOINT, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -29,7 +29,7 @@ function useTodo() {
 
   // Update an existing Todo
   const updateTodo = (checked, id) => {
-    fetchData(TODO_ENDPOINT, {
+    fetchData(BASE_URL + TODO_ENDPOINT, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ function useTodo() {
 
   // Delete an existing Todo
   const deleteTodo = (todoId) => {
-    fetchData(`${TODO_ENDPOINT}/${todoId}`, {
+    fetchData(`${BASE_URL + TODO_ENDPOINT}/${todoId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
