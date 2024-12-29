@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BASE_URL, VERIFY_ENDPOINT } from "../utils/urlConstants";
 
 function useFetch() {
   const [data, setData] = useState(null);
@@ -42,13 +43,11 @@ function useFetch() {
 }
 
 async function refreshTokens() {
-  const url = "http://localhost:8080/verify";
-
   try {
     console.log("Refreshing Tokens...");
     const refreshToken = localStorage.getItem("refreshToken");
 
-    const response = await fetch(url, {
+    const response = await fetch(BASE_URL + VERIFY_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

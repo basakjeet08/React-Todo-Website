@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-// Register API Endpoint
-const REGISTER_ENDPOINT = "http://localhost:8080/register";
+import { BASE_URL, REGISTER_ENDPOINT } from "../utils/urlConstants";
 
 function useRegister() {
   const [userInput, setUserInput] = useState({
@@ -38,7 +36,7 @@ function useRegister() {
       isValidInput(userInput);
 
       // Posting Data to the API
-      const response = await fetch(REGISTER_ENDPOINT, {
+      const response = await fetch(BASE_URL + REGISTER_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
