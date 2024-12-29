@@ -1,5 +1,5 @@
 export const BASE_URL =
-  "https://miraculous-spontaneity-production.up.railway.app:8080";
+  "https://miraculous-spontaneity-production.up.railway.app";
 
 export const VERIFY_ENDPOINT = "/verify";
 export const LOGIN_ENDPOINT = "/login";
