@@ -1,5 +1,4 @@
-export const BASE_URL =
-  "https://miraculous-spontaneity-production.up.railway.app";
+export const BASE_URL = "http://localhost:8080";
 
 export const VERIFY_ENDPOINT = "/verify";
 export const LOGIN_ENDPOINT = "/login";
